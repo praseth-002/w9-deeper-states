@@ -1,18 +1,28 @@
 import React from "react";
 
-export default function OrderCard() {
+export default function OrderCard({ onOrders, onUpdateQuantity }) {
   return (
-    <div className="order">
-      <div>
-        <h4>TODO NAME</h4>
-        <small>TODO PRICE</small>
-      </div>
+    <>
+      {onOrders.map((order, index) => (
+        <div className="order" key={index}>
+          <div>
+            <h4>{order.product}</h4>
+            <small>${order.price}</small>
+          </div>
 
-      <div className="order-quantity">
-        <div className="order-button">-</div>
-        <h4>TODO PRICE</h4>
-        <div className="order-button">+</div>
-      </div>
-    </div>
+          <div className="order-quantity">
+            <button className="order-button" onClick={() => onUpdateQuantity(index, -1)}>
+              -
+            </button>
+            <h4>{order.quantity}</h4>
+            <button className="order-button" onClick={() => onUpdateQuantity(index, 1)}>
+              +
+            </button>
+          </div>
+        </div>
+      ))}
+    </>
   );
 }
+
+
