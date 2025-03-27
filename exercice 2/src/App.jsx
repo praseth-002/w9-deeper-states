@@ -21,13 +21,17 @@ const INITIAL_STUFFS = [
 export default function App() {
   const [stuffs, setStuffs] = React.useState(INITIAL_STUFFS);
 
+  function addStuff(newStuff) {
+    setStuffs([newStuff, ...stuffs]);; // Update state with new item
+  }
+
   return (
     <>
       <header>
         <h1>My Stuff</h1>
       </header>
 
-      <StuffForm></StuffForm>
+      <StuffForm onAddStuff={addStuff} />
 
       <div className="stuff-list">
         {stuffs.map((stuff, index) => (
